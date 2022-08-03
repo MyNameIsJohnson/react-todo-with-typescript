@@ -23,16 +23,9 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
   return (
     <form onSubmit={submitHandler} className={classes.form}>
-      <label htmlFor="text" className={classes.label}>
-        Todo text
-      </label>
-      <input
-        type="text"
-        id="text"
-        ref={todoTextInputRef}
-        className={classes.input}
-      />
-      <button className={classes.button}>Add Todo</button>
+      <label htmlFor="text">Todo text</label>
+      <input type="text" id="text" ref={todoTextInputRef} />
+      <button>Add Todo</button>
     </form>
   );
 };
