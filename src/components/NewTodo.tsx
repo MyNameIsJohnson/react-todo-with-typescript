@@ -13,7 +13,7 @@ const NewTodo: React.FC = () => {
     // if connection not established null will be enteredText
     // use -!- if for certain the connection will not be null
     // refs could be null or not be connected
-    const enteredText = todoTextInputRef.current!.value;
+    let enteredText = todoTextInputRef.current!.value;
 
     //validate text entered by user
     if (enteredText.trim().length === 0) {
@@ -22,6 +22,8 @@ const NewTodo: React.FC = () => {
     }
     // We want to call a function to be stored in App component with props expecting it to get a function as a value
     todoCtx.addTodo(enteredText);
+    // Clear input after submit
+    todoTextInputRef.current!.value = "";
   };
   return (
     <form onSubmit={submitHandler} className={classes.form}>
