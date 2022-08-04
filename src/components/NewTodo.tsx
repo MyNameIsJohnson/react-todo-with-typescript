@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import classes from "./NewTodo.module.css";
+import { TodosContext } from "../store/todos-context";
 
 // declare FC that returns nothing but takes param type string
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todoCtx = useContext(TodosContext);
   // must be explitic with what kind of data to store. Use generic type <-set concrete obj- i.e. HTMLInputElement(-starting value-)>
   const todoTextInputRef = useRef<HTMLInputElement>(null);
   const submitHandler = (e: React.FormEvent) => {
@@ -19,7 +21,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
     // We want to call a function to be stored in App component with props expecting it to get a function as a value
-    props.onAddTodo(enteredText);
+    todoCtx.addTodo(enteredText);
   };
   return (
     <form onSubmit={submitHandler} className={classes.form}>
